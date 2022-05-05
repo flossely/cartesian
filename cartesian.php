@@ -28,7 +28,7 @@ foreach ($mapdel as $mapord => $maprow) {
     	$mapbodyalt = $mapbodyexp[0];
     	$mapbodytitle = $mapbodyexp[1];
     	$mapi[] = $mapbodyalt;
-    	echo $mapheadx.';'.$mapheady.' '.$mapbodyalt.' m<br>';
+    	echo $mapheadx.';'.$mapheady.' ('.$mapbodyalt.' m) - '.$mapbodytitle.'<br>';
     }
     $map[] = $mapi;
 }
