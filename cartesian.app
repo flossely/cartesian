@@ -1,1 +1,1 @@
-Cartesian|[1]|sys.console.png|[1]|window.location.href='cartesian.php';
+Cartesian|[1]|sys.map.png|[1]|window.location.href='cartesian.php';
