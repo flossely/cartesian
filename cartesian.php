@@ -1,7 +1,11 @@
 <?php
-$mapname = ($_REQUEST['name']) ? $_REQUEST['name'] : 'sample.map';
-$mapfile = file_get_contents($mapname);
-$mapdel = explode('|[1]|', $mapfile);
+$dir = '.';
+$list = str_replace($dir.'/','',(glob($dir.'/*', GLOB_ONLYDIR)));
+foreach ($list as $key=>$value) {
+    if (!file_exists($value.'/coord')) {
+        unset($list[array_search($value, $list)]);
+    }
+}
 ?>
 <html>
 <head>
@@ -13,24 +17,13 @@ $mapdel = explode('|[1]|', $mapfile);
 </head>
 <body>
 <?php
-$map = [];
-foreach ($mapdel as $mapord => $maprow) {
-    $mapdeli = explode('|[2]|', $maprow);
-    $mapi = [];
-    foreach ($mapdeli as $mapabs => $mapelem) {
-    	$mapexp = explode('|[3]|', $mapelem);
-    	$maphead = $mapexp[0];
-    	$mapbody = $mapexp[1];
-    	$mapheadexp = explode('|[4]|', $maphead);
-    	$mapheadx = $mapheadexp[0];
-    	$mapheady = $mapheadexp[1];
-    	$mapbodyexp = explode('|[4]|', $mapbody);
-    	$mapbodyalt = $mapbodyexp[0];
-    	$mapbodytitle = $mapbodyexp[1];
-    	$mapi[] = $mapbodyalt;
-    	echo $mapheadx.';'.$mapheady.' ('.$mapbodyalt.' m) - '.$mapbodytitle.'<br>';
-    }
-    $map[] = $mapi;
+foreach ($list as $key=>$value) {
+    $coord = file_get_contents($value.'/coord');
+    $coordDiv = explode(';', $coord);
+    $coordX = $coordDiv[0];
+    $coordY = $coordDiv[1];
+    $coordZ = $coordDiv[2];
+    echo $value.' ('.$coordX.';'.$coordY.';'.$coordZ.')<br>';
 }
 ?>
 </body>
