@@ -21,9 +21,21 @@ foreach ($list as $key=>$value) {
 foreach ($list as $key=>$value) {
     $coord = file_get_contents($value.'/coord');
     $coordDiv = explode(';', $coord);
-    $coordX = $coordDiv[0] ?? 0;
-    $coordY = $coordDiv[1] ?? 0;
-    $coordZ = $coordDiv[2] ?? 0;
+    if (is_numeric($coordDiv[0])) {
+        $coordX = $coordDiv[0];
+    } else {
+        $coordX = 0;
+    }
+    if (is_numeric($coordDiv[1])) {
+        $coordY = $coordDiv[1];
+    } else {
+        $coordY = 0;
+    }
+    if (is_numeric($coordDiv[2])) {
+        $coordZ = $coordDiv[2];
+    } else {
+        $coordZ = 0;
+    }
     echo $value.' ('.$coordX.';'.$coordY.';'.$coordZ.')<br>';
 }
 ?>
