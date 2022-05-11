@@ -14,6 +14,7 @@ foreach ($list as $key=>$value) {
 <title>Cartesian</title>
 <link rel="shortcut icon" href="sys.map.png?rev=<?=time();?>" type="image/x-icon">
 <link href="system.css?rev=<?=time();?>" rel="stylesheet">
+<?php include 'base.incl.php'; ?>
 </head>
 <body>
 <?php
