@@ -2,7 +2,7 @@
 $dir = '.';
 $list = str_replace($dir.'/','',(glob($dir.'/*', GLOB_ONLYDIR)));
 foreach ($list as $key=>$value) {
-    if (!file_exists($value.'/coord')) {
+    if (!file_exists($value.'/coord') && !file_exists($value.'/rating') && !file_exists($value.'/mode')) {
         unset($list[array_search($value, $list)]);
     }
 }
